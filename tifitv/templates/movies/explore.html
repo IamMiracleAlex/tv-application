@@ -1,0 +1,354 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load numbers %}
+
+{% block title %} Explore {% endblock title %}
+
+{% block extrastyle %}
+    <link rel="stylesheet" href="{% static 'css/explore.css' %}">
+    
+{% endblock extrastyle %}
+
+{% block content %}
+<div class="container" style="max-width: 1200px">
+    {% include 'partials/navbar.html' %}
+</div>
+
+<main class="container">
+    <section class="row mx-0 mx-0">
+        <section class="col-lg-3 sidebar pl-0 pr-3 mx-0">
+            {% comment %} <i class="fa fa-arrow-left arrow"></i> {% endcomment %}
+            <form  method="post" class="form1 pl-5">
+                {% csrf_token %}
+                <div class="form-group">
+
+                    <h5>Genres </h5>
+                    {% with val=request.META.PATH_INFO %}
+                    <p class="genre"><input type="checkbox" class="genre"  name="genre[]" {% if "action" in val %}checked{% endif %} value ="action" ><a href ="/explore/genre/action/">Action</a></p>
+                    <p class="genre"><input type="checkbox" class="genre"  name="genre[]" {% if "adventure" in val %}checked{% endif %}  value ="adventure"><a href ="/explore/genre/adventure/">Adventure</a></p>
+                    <p class="genre"><input type="checkbox" class="genre"  name="genre[]"  {% if "animation" in val %}checked{% endif %} value ="animation"><a href ="/explore/genre/animation/">Animation</a></p>
+                    <p class="genre"><input type="checkbox" class="genre"  name="genre[]" {% if "comedy" in val %}checked{% endif %}  value ="comedy"><a href ="/explore/genre/comedy/">Comedy</a></p>
+                    <p class="genre"><input type="checkbox" class="genre"  name="genre[]"  {% if "crime" in val %}checked{% endif %} value ="crime"><a href ="/explore/genre/crime/">Crime</a></p>
+                    <p class="genre"><input type="checkbox" class="genre"  name="genre[]"  {% if "documentary" in val %}checked{% endif %} value ="documentary"><a href ="/explore/genre/documentary/">Documentary</a></p>
+                    <p class="genre"><input type="checkbox" class="genre"  name="genre[]"  {% if "drama" in val %}checked{% endif %} value ="drama" ><a href ="/explore/genre/drama/">Drama</a></p>
+                    <p class="genre"><input type="checkbox" class="genre"  name="genre[]"  {% if "epic" in val %}checked{% endif %} value ="epic" ><a href ="/explore/genre/epic/">Epic</a></p>
+                    <p class="genre"><input type="checkbox" class="genre"  name="genre[]"  {% if "family" in val %}checked{% endif %} value ="family" ><a href ="/explore/genre/family/">Family</a></p>
+                    <p class="genre"><input type="checkbox" class="genre"  name="genre[]"  {% if "feature-films" in val %}checked{% endif %} value ="feature-films"><a href ="/explore/genre/feature-films/">Feature Films</a></p>
+                    <p class="genre"><input type="checkbox" class="genre"  name="genre[]"  {% if "game-show" in val %}checked{% endif %} value ="game-show" ><a href ="/explore/genre/game-show/">Game-Show</a></p>
+                    <p class="genre"><input type="checkbox" class="genre"  name="genre[]"  {% if "horror" in val %}checked{% endif %} value ="horror" ><a href ="/explore/genre/horror/">Horror</a></p>
+                    <p class="genre"><input type="checkbox" class="genre"  name="genre[]"  {% if "music" in val %}checked{% endif %} value ="music" ><a href ="/explore/genre/music/">Music</a></p>
+                    <p class="genre"><input type="checkbox" class="genre"  name="genre[]"  {% if "mystery" in val %}checked{% endif %} value ="mystery" ><a href ="/explore/genre/mystery/">Mystery</a></p>
+                    <p class="genre"><input type="checkbox" class="genre"  name="genre[]"  {% if "news" in val %}checked{% endif %} value ="news" ><a href ="/explore/genre/news/">News</a></p>
+                    <p class="genre"><input type="checkbox" class="genre"  name="genre[]"  {% if "reality-tv" in val %}checked{% endif %} value ="reality-tv" ><a href ="/explore/genre/reality-tv/">Reality-TV</a></p>
+                    <p class="genre"><input type="checkbox" class="genre"  name="genre[]"  {% if "romantic" in val %}checked{% endif %} value ="romance" ><a href ="/explore/genre/romance/">Romance</a></p>
+                    <p class="genre"><input type="checkbox" class="genre"  name="genre[]"  {% if "sci-fi" in val %}checked{% endif %} value ="sci-fi" ><a href ="/explore/genre/sci-fi/">Sci-Fi</a></p>
+                    <p class="genre"><input type="checkbox" class="genre"  name="genre[]"  {% if "short" in val %}checked{% endif %} value ="short" ><a href ="/explore/genre/short/">Short</a></p>
+                    <p class="genre"><input type="checkbox" class="genre"  name="genre[]"  {% if "sport" in val %}checked{% endif %} value ="sport" ><a href ="/explore/genre/sport/">Sport</a></p>
+                    <p class="genre"><input type="checkbox" class="genre"  name="genre[]"  {% if "talk-show" in val %}checked{% endif %} value ="talk-show" ><a href ="/explore/genre/talk-show/">Talk-Show</a></p>
+                    <p class="genre"><input type="checkbox" class="genre"  name="genre[]"  {% if "thriller" in val %}checked{% endif %} value ="thriller" ><a href ="/explore/genre/thriller/">Thriller</a></p>
+                    <p class="genre"><input type="checkbox" class="genre"  name="genre[]"  {% if "violence" in val %}checked{% endif %} value ="violence" ><a href ="/explore/genre/violence/">Violence</a></p>
+                    <p class="genre"><input type="checkbox" class="genre"  name="genre[]"  {% if "war" in val %}checked{% endif %} value ="war" ><a href ="/explore/genre/war/">War</a></p>
+                    <p class="genre"><input type="checkbox" class="genre"  name="genre[]"  {% if "western" in val %}checked{% endif %} value ="western" ><a href ="/explore/genre/western/">Western</a></p>
+                    {% endwith %}
+
+                </div>
+
+            </form>
+
+        </section>
+
+        <section class="col-lg-9 main_page pl-0 pl-lg-3 pr-0 mx-0">
+            <article class="pb-5 pb-lg-0">
+                <h1 class="mb-4 explore-header">TV shows you should watch</h1>
+                <article class="sort">Sorted by
+                    <span class="brand_color myDropdown"><span class="filter_value pl-2">Popularity </span> <i
+                            class="fa fa-angle-down"></i></span>
+                    <div class="dropdown_content">
+                        <li class="sort" data="num_imdb_ratings"> Popularity
+                            <span class="check_state active_check"><img src="{% static 'uploads/check.png' %}" alt=""></span>
+                        </li>
+
+                        <li class="sort" data="avg_rating"> Top Rated
+                            <span class=" check_state"><img src="{% static 'uploads/check.png' %}" alt=""></span>
+                        </li>
+                        <li class="sort" data="num_imdb_ratings"> All-Time Great
+                            <span class=" check_state"><img src="{% static 'uploads/check.png' %}" alt=""></span>
+                        </li>
+                    </div>
+
+                </article>
+
+                <article class="range pt-4 my-4">
+                    <span class="week">1 week</span>
+                    <p>
+                        Time range
+                        <input type="range" min="1" max="10080" step="7" class=""></p>
+                </article>
+            </article>
+            <br>  <br>  <br> 
+            <div id="movie_list">
+            <div class="movie_list mx-0 px-md-0 d-flex flex-row flex-wrap justify-content-around justify-content-md-between">
+           
+            {% for movie in movies %}
+            <article>
+                <span>
+                    <div>
+                      <img src="{{movie.poster_url}}" alt=""></div>
+                    <div class="m_details">
+                      {% if  movie.num_imdb_ratings > 1000 %}
+                      <span class="">{{movie.num_imdb_ratings|number}}</span>
+                      {% else %}
+                      <span class="">{{movie.num_imdb_ratings}}</span>
+                      {% endif %}
+                        <p><a href="{{movie.get_absolute_url}}"> {{movie.title}}</a><br>
+                            <!-- <i>{{movie.type}}</i> -->
+                          </p>
+                    </div>
+                </span>
+                <a href="{{movie.get_absolute_url}}"><section class="state_container">
+                    <section class="m_state">
+                        <p class="icons d-flex flex-row flex-wrap justify-content-between px-4">
+                            <i class="fa fa-heart state_icon"></i>
+                            <i class="fa fa-check state_icon"></i>
+                            <i class="fas fa-bookmark state_icon movie_tag"></i>
+                            <i class="fa fa-comment">
+                                <!-- <span>233</span> -->
+                            </i>
+                        </p>
+                    </section>
+                    <section class="seen seen1 changestate">
+                        <p class="">
+                            <i class="fa fa-check"></i>
+                            <a href="">Seen</a>
+                        </p>
+                    </section>
+
+                    <section class="watch watch1 changestate">
+                        <p class="about_movie mb-2">
+                          {{movie.plot}}
+                        <p class="ratings mb-4 mt-4">
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="far fa-star"></i>
+                            <span>{{movie.num_imdb_ratings}} Ratings</span>
+                        </p>
+
+
+
+                        <p class="watch_movie py-2">
+                            Watch
+                        </p>
+
+                    </section>
+
+                </section> </a>
+            </article>
+             {% endfor %}
+            </div>
+            <div>
+
+            <section class="pagination mb-5 mx-0">
+                <ul class="pagination mx-auto my-3">
+
+                    {% if movies.has_previous %}
+                        <li><a href="{{ movies.previous_page_number }}"><i class="fa fa-chevron-left" aria-hidden="true"></i></a></li>
+                    {% else %}
+                        <li class="disabled"><span><i class="fa fa-chevron-left" aria-hidden="true"></i></span></li>
+                    {% endif %}
+                      
+                    {% if movies.number|add:'-4' > 1 %}
+                        <li><a href="{{ movies.number|add:'-5' }}">&hellip;</a></li>
+                    {% endif %}
+                      
+                    {% for i in movies.paginator.page_range %}
+                        {% if movies.number == i %}
+                            <li class="active"><span>{{ i }} <span class="sr-only">(current)</span></span></li>
+                        {% elif i > movies.number|add:'-5' and i < movies.number|add:'5' %}
+                            <li><a href="{{ i }}">{{ i }}</a></li>
+                        {% endif %}
+                    {% endfor %}
+                      
+                    {% if movies.paginator.num_pages > movies.number|add:'4' %}
+                        <li><a href="{{ movies.number|add:'5' }}">&hellip;</a></li>
+                    {% endif %}
+                      
+                    {% if movies.has_next %}
+                        <li><a href="{{ movies.next_page_number }}"><i class="fa fa-chevron-right" aria-hidden="true"></i></a></li>
+                    {% else %}
+                        <li class="disabled"><span><i class="fa fa-chevron-right" aria-hidden="true"></i></span></li>
+                    {% endif %}
+                      
+              
+            </ul>
+          </section>
+        </div>
+            </div>
+
+            <style media="screen">
+              .paginate {
+                height: 100%;
+                width: 10%;
+                background-color: #FF5300;
+                border: 1px solid #FF5300;
+                color: #ffffff;
+                border-radius: 0 8px 8px 0;
+              }
+              .pagi {
+                text-align: center;
+              }
+            </style>
+        </section>
+
+    </section>
+
+</main>
+    {% include 'partials/footer.html' %}
+
+
+{% endblock content %}
+
+
+
+{% block javascript %}
+<script type="text/javascript">
+// let Url = "{{request.path}}";
+// console.log(Url);
+// using jQuery
+function getCookie(name) {
+    var cookieValue = null;
+    if (document.cookie && document.cookie != '') {
+        var cookies = document.cookie.split(';');
+        for (var i = 0; i < cookies.length; i++) {
+            var cookie = jQuery.trim(cookies[i]);
+            // Does this cookie string begin with the name we want?
+            if (cookie.substring(0, name.length + 1) == (name + '=')) {
+                cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                break;
+            }
+        }
+    }
+    return cookieValue;
+}
+var csrftoken = getCookie('csrftoken');
+console.log(csrftoken);
+function csrfSafeMethod(method) {
+    // these HTTP methods do not require CSRF protection
+    return (/^(GET|HEAD|OPTIONS|TRACE)$/.test(method));
+}
+$.ajaxSetup({
+    beforeSend: function(xhr, settings) {
+        if (!csrfSafeMethod(settings.type) && !this.crossDomain) {
+            xhr.setRequestHeader("X-CSRFToken", csrftoken);
+        }
+    }
+});
+$(document).ready(function (){
+    let Url = "{{ request.get_full_path }}";
+    console.log(Url);
+    $(".dropdown_content li").click(function() {
+    let sort = $(this).attr('data');
+    console.log(sort);
+    let url = "explore?&rate="+sort;
+    $.ajax({
+    url: Url+"?&rate="+sort,
+    method: "post",
+    beforeSend: function() {
+    $('.load-more').show();
+    }
+    })
+    .then(
+    function(data) {
+    //console.log(data);
+    $('#movie_list').html(data);
+    changeUrl(url);
+    $('.load-more').hide();
+    const link = document.querySelector('[rel = next]');
+    // console.log(link);
+    if (link == null) {
+        $(".pagi").hide();
+    }
+    });
+        });
+    let genre = $(".form-group p input.genre");
+for (i = 0; i < genre.length; i++) {
+  $(genre[i]).on("click", function () {
+    genre = $(this).val();
+    $(this).attr("checked", !$(this).attr("checked"))
+      if ($(this).attr("checked") == 'checked') {
+        var genres = new Array();
+        $(".form-group p input[checked=checked]").each(function() {
+          genres.push($(this).val());
+          
+        });
+    console.log(genres);
+    let url = '/explore/genre/'+genres.join('-and-') +'/';
+    console.log(url);
+    $.ajax({
+    url: '{% url "genre" %}',
+    method: "post",
+    data: {'genre[]':genres},
+    headers: {'X-CSRFToken': csrftoken},
+    beforeSend: function() {
+   $('.load-more').show();
+    }
+   })
+   .then(
+    function(data) {
+      console.log(data);
+      $('#movie_list').html(data);
+      changeUrl(url);
+      $('.load-more').hide();
+    });
+  }
+  });
+}
+
+function changeUrl(url) {
+  history.pushState(null, null, url)
+}
+function getMovies(url) {
+  $.ajax({
+    url: url,
+    beforeSend: function() {
+      $('.load-more').show();
+      $('#pagination').remove();
+    },
+  }).done(function(data) {
+    $('.load-more').hide();
+    $('#movie_list').html(data);
+    $('#movie_list').focus();
+    const link = document.querySelector('[rel = next]');
+     // console.log(link);
+    if (link == null) {
+      $(".pagi").hide();
+    }
+  }).fail(function() {
+    alert('Movies could not be loaded.');
+  });
+}
+$("#next").click(function() {
+  const link = document.querySelector('[rel = next]');
+   console.log(link);
+  if (link !== null) {
+    const url = link.href;
+      getMovies(url);
+  }
+});
+$("#previous").click(function() {
+  const link = document.querySelector('[rel = prev]');
+// console.log(link);
+  if (link !== null) {
+    const url = link.href;
+      getMovies(url);
+  }
+});
+
+});
+
+</script>
+
+<script src="{% static 'js/main.js' %}"></script>
+
+{% endblock javascript %}

@@ -1,0 +1,170 @@
+* {
+  margin: 0;
+  padding: 0;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  font-style: normal;
+  font-family: 'Open Sans', sans-serif;
+}
+
+body {
+  overflow-x: hidden !important;
+}
+
+.container {
+  max-width: 1200px;
+  min-width: 350px;
+  padding: 0 2.5%;
+}
+
+a {
+  text-decoration: none;
+  color: #000000;
+}
+
+a:hover {
+  text-decoration: none;
+  color: #FF5300;
+  opacity: .7;
+}
+
+.brand_color {
+  color: #FF5300;
+}
+
+.bg_color {
+  background-color: #FF5300;
+  color: #ffffff;
+  border: 0;
+  border-radius: 5px;
+}
+
+img {
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+
+.clear {
+  clear: both;
+}
+
+.active {
+  color: #FF5300;
+}
+
+.tweet_box {
+  background-color: white;
+  z-index: 99;
+  display: none;
+  overflow-y: scroll;
+  overflow-x: hidden;
+  height: 100%;
+  width: 100%;
+}
+
+.tweet_box .close {
+  font-size: 35px;
+  color: red;
+  cursor: pointer;
+}
+
+.tweet_box::-webkit-scrollbar {
+  width: 2px;
+  background-color: #dbcbc2;
+}
+
+.tweet_box::-webkit-scrollbar-thumb {
+  background-color: black;
+}
+
+.tweet_container_box {
+  min-width: 320px;
+  max-width: 700px;
+  margin: 0 auto;
+  color: #332f30;
+}
+
+.tweet_container_box .tweet_header {
+  background: #e7e6e6;
+  border-radius: 5px 5px 0 0;
+}
+
+.tweet_container_box .tweet_header p {
+  font-weight: 600;
+  font-size: 18px;
+  line-height: 25px;
+}
+
+.tweet_container_box .tweet_header h5.tweet_nav {
+  font-weight: normal;
+  font-size: 14px;
+  line-height: 19px;
+}
+
+.tweet_container_box .tweet_header h5.tweet_nav a.active {
+  color: #FF5300;
+  font-weight: bold;
+}
+
+.tweet_container_box .tweet_body .tweet_sender {
+  background: #e7e6e6;
+  position: relative;
+}
+
+.tweet_container_box .tweet_body .tweet_sender_pic img {
+  width: 36px;
+  height: 36px;
+}
+
+.tweet_container_box .tweet_body .tweet_sender_pic i {
+  font-size: 40px;
+  color: grey;
+}
+
+.tweet_container_box .tweet_body .tweet_sender_details {
+  position: absolute;
+  left: 60px;
+  top: 5px;
+}
+
+.tweet_container_box .tweet_body .tweet_sender_details a {
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 20px;
+}
+
+.tweet_container_box .tweet_body .tweet_sender_details p {
+  font-weight: 600;
+  font-size: 13px;
+  line-height: 20px;
+}
+
+.tweet_container_box .tweet_body .tweet_sender_act {
+  position: absolute;
+  top: 45px;
+  right: 20px;
+}
+
+.tweet_container_box .tweet_body .tweet_sender_act span {
+  color: #1b8bc8;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 20px;
+}
+
+.tweet_container_box .tweet_body h6.tweet_content {
+  font-weight: normal;
+  font-size: 16px;
+  line-height: 20px;
+  color: #404040;
+  border-radius: 5px;
+}
+
+.tweet_container_box .tweet_body p.reply_tweet {
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 20px;
+  color: #1b8bc8;
+  border-radius: 5px;
+}
+/*# sourceMappingURL=tweets.css.map */

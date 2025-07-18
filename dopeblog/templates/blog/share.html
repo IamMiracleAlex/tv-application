@@ -1,0 +1,107 @@
+{% extends "base.html" %}
+
+{% load static %}
+
+{% block title %} Share a post {% endblock %}
+
+{% block content %}
+
+{% load custom_tags %}
+
+{% include 'partials/navbar.html' %}
+
+
+<section class="row page-content-wrap">
+    <div class="container">
+
+    {% if sent %}
+
+        <h1> E-mail Successfully Sent! </h1>
+     <h4>
+        "{{ post.title }}" was successfully sent to {{ form.cleaned_data.to }}.
+    </h4>
+
+    {% else %}
+
+        <h3 class="page-header text-center">Share "{{ post.title }}" by E-mail</h3>
+
+        <div class="row">
+
+            <div class="col-md-8 page-contents">
+                <div class="row page-content">
+                    <div class="contents row">
+                        <br>
+
+                        <!--Share form-->
+                        <form action="{% url 'blog:share' post.id %}" method="post" class="contact-form row">
+                                 {% csrf_token %}
+                            <div class="form-group col-sm-6">
+                                <label for="name">Your name*</label>
+                                  {{ form.name }}
+                            </div>
+
+                            <div class="form-group col-sm-6">
+                                <label for="email">Your Email*</label>
+                                {{ form.email }}
+                            </div>
+
+                            <div class="form-group col-sm-6">
+                                <label for="website">Receiver's Email*</label>
+                                {{ form.to }}
+                            </div>
+                            
+                            <div class="form-group col-sm-12">
+                                <label for="message">message</label>
+                                {{ form.comments }}
+                            </div>
+
+                            <div class="col-sm-12">
+                                <button type="submit" class="btn-primary"><span>Send e-mail</span></button>
+                                <h5 class="pull-right">*required fields</h5>
+                            </div>
+                        </form>
+                       
+                    </div>                    
+                </div>
+            </div>
+
+
+            <div class="col-md-4 sidebar">              
+
+                    <!--Latest Posts-->
+                <aside class="row m0 widget-author widget">
+                    <div class="widget-author-inner row">
+                        <h2 class="author-name">Latest Posts</h2>
+
+                        {% show_latest_posts 5 %}
+                        
+                    </div>
+                </aside>
+
+                    <!--Most commented Posts-->
+                <aside class="row m0 widget-author widget">
+                    <div class="widget-author-inner row">
+                        <h3 class="author-name">Most Commented</h3>
+
+                        {% get_most_commented_posts as most_commented_posts %}
+
+                        <ul>
+                            {% for post in most_commented_posts %}
+                        <li>
+                        <a href="{{ post.get_absolute_url }}">{{ post.title }}</a>
+                        </li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                </aside>
+               
+            </div> 
+             {% endif %}
+
+        </div>
+    </div>
+</section>
+
+{% include 'partials/footer.html' %}
+
+{% endblock content %}

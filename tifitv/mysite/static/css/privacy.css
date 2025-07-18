@@ -1,0 +1,9 @@
+.main-body {
+    width: 65%;
+}
+
+@media screen and (max-width: 1200px) {
+    .main-body {
+        widows: 80%;
+    }
+}

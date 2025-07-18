@@ -1,0 +1,121 @@
+{% extends "account/base.html" %}
+
+{% load static %}
+
+{% block title %}Sign Up with Email{% endblock %}
+
+{% block extrastyle %}
+  <link rel="stylesheet" href="{% static 'css/signup.css' %}">
+{% endblock extrastyle %}
+
+{% block content %}
+
+<div class="container">
+       {% include 'partials/navbar.html' %}
+    </div>    
+    <main>
+        <section class="page_header">
+            <span>
+                <h3>Instantly watch TV shows & Movies</h3>
+            </span>
+        </section>
+        <div class="container-fluid">
+            <section class="section--one">
+                <div class="steps row">
+                    <section class="active col-6">
+                        <p>STEP 1</p>
+                        <P>Create Account</P>
+                    </section>
+                    <section class="col-6">
+                        <p>STEP 2</p>
+                        <p>Select what you like</p>
+                    </section>
+                </div>
+            </section>
+
+            <section class="section--two">
+                
+                <section class="signup_email">
+               <form action="{% url 'account_signup' %}" method="POST">
+              {% csrf_token %}
+              
+              <div class="form_container">
+                {% if form.errors %}
+                    {% for field in form %}
+                        {% for error in field.errors %}
+                            <div class="alert alert-error">
+                                <span style="color:red" >{{ error|escape }}</span>
+                            </div>
+                        {% endfor %}
+                    {% endfor %}
+                    {% for error in form.non_field_errors %}
+                        <div class="alert alert-error">
+                            <span style="color:red">{{ error|escape }}</span>
+                        </div>
+                    {% endfor %}
+                {% endif %}
+              <section class="a_group row">
+                  <div class="form_group col-sm-12">
+                      <article>
+                          <label for="username">Username</label>
+                          {{ form.username }}
+                      </article>
+                  </div>
+                  <div class="form_group col-sm-12 ">
+                      <article>
+                          <label for="email">Email</label>
+                           {{ form.email }}
+                      </article>
+                  </div>
+                  <div class="form_group col-sm-12 mt-4">
+                      <article>
+                          <label for="password1">Password</label>
+                           {{ form.password1 }}
+                      </article>
+                  </div>
+                  <div class="form_group col-sm-12 mt-4">
+                      <article>
+                          <label for="password2">Confirm Password</label>
+                           {{ form.password2 }}
+                      </article>
+                  </div>
+                  
+              </section>
+
+              <section class="form_group">
+                  <div class="t_and_c">
+                      
+                      <p>By Clicking on "Sign Up" you agree to our <a>Terms of service</a> & <a>Privacy
+                              Policy</a> </p>
+                  </div>
+              </section>
+
+              <section class="submit">
+                  <input type="submit" value="Sign Up"></section>
+          </div>
+      </form>
+
+            <div class="notSignedIn">
+                <article>Have an account? <a class="font-weight-bold" href="{% url 'signin' %}">Sign In</a></article>
+            </div>
+        </section>
+            </section>
+        </div>
+    </main>
+
+    {% include 'partials/footer.html' %}
+
+
+
+{% comment %} <p>{% blocktrans %}Already have an account? Then please <a href="{{ login_url }}">sign in</a>.{% endblocktrans %}</p>
+
+<form class="signup" id="signup_form" method="post" action="{% url 'account_signup' %}">
+  {% csrf_token %}
+  {{ form.as_p }}
+  {% if redirect_field_value %}
+  <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
+  {% endif %}
+  <button type="submit">{% trans "Sign Up" %} &raquo;</button>
+</form> {% endcomment %}
+
+{% endblock content %}

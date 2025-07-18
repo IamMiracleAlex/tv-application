@@ -1,0 +1,115 @@
+{% extends 'base.html' %}
+
+{% load static %}
+{% load numbers %}
+
+{% block extrastyle %}
+    <link rel="stylesheet" href="{% static 'css/explore.css' %}"> 
+{% endblock extrastyle %}
+
+{% block content %}
+<main class="container">
+<div id="movie_list">
+        <div class="movie_list mx-0 px-md-0 d-flex flex-row flex-wrap justify-content-around justify-content-md-between">
+
+        {% for movie in movies %}
+        <article>
+            <span>
+                <div>
+                  <img src="{{movie.poster_url}}" alt=""></div>
+                <div class="m_details">
+                  {% if  movie.num_imdb_ratings > 1000 %}
+                  <span class="">{{movie.num_imdb_ratings|number}}</span>
+                  {% else %}
+                  <span class="">{{movie.num_imdb_ratings}}</span>
+                  {% endif %}
+                    <p><a href="{{movie.get_absolute_url}}"> {{movie.title}}</a><br>
+                        <!-- <i>{{movie.type}}</i> -->
+                      </p>
+                </div>
+            </span>
+            <section class="state_container">
+                <section class="m_state">
+                    <p class="icons d-flex flex-row flex-wrap justify-content-between px-4">
+                        <i class="fa fa-heart state_icon"></i>
+                        <i class="fa fa-check state_icon"></i>
+                        <i class="fas fa-bookmark state_icon movie_tag"></i>
+                        <i class="fa fa-comment">
+                            <!-- <span>233</span> -->
+                        </i>
+                    </p>
+                </section>
+                <section class="seen seen1 changestate">
+                    <p class="">
+                        <i class="fa fa-check"></i>
+                        <a href="">Seen</a>
+                    </p>
+                </section>
+
+                <section class="watch watch1 changestate">
+                    <p class="about_movie mb-2">
+                      {{movie.plot}}
+                    <p class="ratings mb-4 mt-4">
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="far fa-star"></i>
+                        <span>{{movie.num_imdb_ratings}} Ratings</span>
+                    </p>
+
+
+
+                    <p class="watch_movie py-2">
+                        Watch
+                    </p>
+
+                </section>
+
+            </section>
+        </article>
+         {% endfor %}
+        </div>
+
+        <section class="pagination mb-5 mx-0">
+                <ul class="pagination mx-auto my-3">
+
+
+                    {% if movies.has_previous %}
+                        <li><a href="{{ movies.previous_page_number }}"><i class="fa fa-chevron-left" aria-hidden="true"></i></a></li>
+                    {% else %}
+                        <li class="disabled"><span><i class="fa fa-chevron-left" aria-hidden="true"></i></span></li>
+                    {% endif %}
+                      
+                    {% if movies.number|add:'-4' > 1 %}
+                        <li><a href="{{ movies.number|add:'-5' }}">&hellip;</a></li>
+                    {% endif %}
+                      
+                    {% for i in movies.paginator.page_range %}
+                        {% if movies.number == i %}
+                            <li class="active"><span>{{ i }} <span class="sr-only">(current)</span></span></li>
+                        {% elif i > movies.number|add:'-5' and i < movies.number|add:'5' %}
+                            <li><a href="{{ i }}">{{ i }}</a></li>
+                        {% endif %}
+                    {% endfor %}
+                      
+                    {% if movies.paginator.num_pages > movies.number|add:'4' %}
+                        <li><a href="{{ movies.number|add:'5' }}">&hellip;</a></li>
+                    {% endif %}
+                      
+                    {% if movies.has_next %}
+                        <li><a href="{{ movies.next_page_number }}"><i class="fa fa-chevron-right" aria-hidden="true"></i></a></li>
+                    {% else %}
+                        <li class="disabled"><span><i class="fa fa-chevron-right" aria-hidden="true"></i></span></li>
+                    {% endif %}
+                      
+              
+            </ul>
+          </section>
+        </div>
+    
+{% endblock content %}
+
+{% block javascript %}
+    <script src="{% static 'js/main.js' %}"></script>
+    {% endblock javascript %}

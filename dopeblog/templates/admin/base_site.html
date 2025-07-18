@@ -1,0 +1,29 @@
+ {% extends 'admin/base.html' %}
+
+{% block title %} Dope Blog | Admin Site {% endblock title %}
+
+ {% load static %}
+
+ {% block branding %}
+
+    <h1 id="head" >
+      <a href="{% url 'admin:index' %}">
+         <em style="font-size: 3rem; font-weight: bolder; margin-right:3rem; color: white;">Dope
+         </em>
+      </a>  
+        Admin Site
+    </h1>
+    
+ {% endblock branding %}
+
+ {% block extrastyle %}
+
+   <link rel="shortcut icon" href="{% static 'images/favicon.png' %}" />
+   
+    <link rel="stylesheet" href="{% static 'css/admin.css' %}">
+
+{% endblock extrastyle %}
+
+
+
+ {% block nav-global %}{% endblock %}

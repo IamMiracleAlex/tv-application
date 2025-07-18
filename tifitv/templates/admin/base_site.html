@@ -1,0 +1,34 @@
+ {% extends 'admin/base.html' %}
+
+{% block title %} tifi.tv | Admin Site {% endblock title %}
+
+ {% load static %}
+
+ {% block branding %}
+
+    <h1 id="head" >
+      <a href="{% url 'admin:index' %}">
+         <span style="font-size: 3rem; font-weight: bolder; margin-right:3rem; color: white;">Tifi TV
+         </span>
+      </a>  
+        Admin Site
+    </h1>
+
+    {% comment %} <span class="tifi_logo mb-md-0">
+                <a href="{% url 'index' %}" class="brand_color">tifi<img width="100%" height="250px" src="{% static 'uploads/logotv.png' %}" alt="">
+                </a>
+            </span> {% endcomment %}
+    
+ {% endblock branding %}
+
+ {% block extrastyle %}
+
+   <link rel="shortcut icon" type="image/jpg" href="{% static 'uploads/favicon.ico' %}"/>
+   
+    <link rel="stylesheet" href="{% static 'css/admin.css' %}">
+
+{% endblock extrastyle %}
+
+
+
+ {% block nav-global %}{% endblock %}

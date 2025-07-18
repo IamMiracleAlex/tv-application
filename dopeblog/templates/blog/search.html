@@ -1,0 +1,72 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block title %} Search {% endblock title %}
+
+{% block content %}
+
+{% include 'partials/navbar.html' %} 
+
+
+<!-- Page body -->
+<section class="row content-wrap">
+    <div class="container">
+            <div class="col-lg-12">
+
+            {% if query %}
+            
+            <h1>Posts containing "{{ query }}"</h1>
+            <h3>
+                {% with results.count as total_results %}
+                Found {{ total_results }} result{{ total_results|pluralize }}
+                {% endwith %}
+            </h3>
+
+        <div class="row" id="post-masonry">
+
+        {% for post in results %}
+            
+            <!--Blog Post-->
+            <article class="col-lg-4 post post-masonry post-format-image">
+                <div class="post-wrapper row">
+                    <div class="post-excerpt row">
+
+                        <!--Post title and content-->
+                        <h3 class="post-title"> 
+                        <a href="{{ post.get_absolute_url }}"> {{ post.title }} </a>
+                        </h3>
+                        <p> {{ post.body|truncatewords:15 }} </p>
+
+                            <!--Comment icon and count-->
+                            <div class="response-count">
+                            <img src="{% static 'images/comment-icon-gray.png' %}" alt="">
+                            </div>
+                        </footer>
+                    </div>
+                </div>
+            </article>
+
+        {% empty %}
+
+            <h3>There are no results for your query.</h3>
+
+
+        {% endfor %}
+           
+        </div>
+    </div>
+
+{% endif %}
+
+    
+
+    </div>
+</section>
+
+
+
+{% include 'partials/footer.html' %}
+
+{% endblock content %}
+

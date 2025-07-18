@@ -1,0 +1,247 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block title %} Profile {% endblock title %}
+
+{% block extrastyle %}
+    <link rel="stylesheet" href="{% static 'css/profile.css' %}">
+{% endblock extrastyle %}
+    
+
+{% block content %}
+
+
+<div class="container">
+        
+        <!-- {% include 'partials/navbar.html' %} -->
+
+    </div>    <main class="mx-auto mb-5 py-5">
+        <div class="container">
+            <section class="section--one">
+                <span>
+                    <h3>Instantly watch TV shows & Movies</h3>
+                </span>
+                <div class="steps row mx-auto my-5">
+                    <section class="col-6">
+                        <a href="{% url 'signin' %}">
+                            <p>STEP 1</p>
+                            <P>Create Account</P>
+                        </a>
+                    </section>
+                    <section class="active col-6">
+                        <p>STEP 2</p>
+                        <p>Welcome to tifi.tv</p>
+                    </section>
+                </div>
+            </section>
+
+            <section class="body p-3">
+                <p class="intro mb-3">
+                    <span>Welcome <a href="#" class="brand_color">Brandon</a></span>, Tifi.tv works better when we know
+                    what you like
+                </p>
+                <div class="add_something">
+                    <p>Add something to your watchlist</p>
+                    <input type="text" name="add_something" class="mt-1 p-1">
+                </div>
+
+                <div class="pick_genre mx-auto my-5">
+                    <p>Pick a genre</p>
+                    <div class="genre">
+                        <section>
+                            <article>
+                                <span>
+                                    <i class="fa fa-check"></i>
+                                </span>
+                                <p>Drama</p>
+                            </article>
+                            <article>
+                                <span class="g_active"> <i class="fa fa-check"></i></span>
+                                <p>Romance</p>
+                            </article>
+                            <article>
+                                <span> <i class="fa fa-check"></i></span>
+                                <p>Comedy</p>
+                            </article>
+                            <article>
+                                <span class="g_active"> <i class="fa fa-check"></i></span>
+                                <p>Herror</p>
+                            </article>
+                            <article>
+                                <span> <i class="fa fa-check"></i></span>
+                                <p>Thriller</p>
+                            </article>
+                            <article>
+                                <span> <i class="fa fa-check"></i></span>
+                                <p>Science Fiction</p>
+                            </article>
+                            <article>
+                                <span> <i class="fa fa-check"></i></span>
+                                <p>Action</p>
+                            </article>
+                        </section>
+                        <section>
+                            <article>
+                                <span> <i class="fa fa-check"></i></span>
+                                <p>Western</p>
+                            </article>
+                            <article>
+                                <span> <i class="fa fa-check"></i></span>
+                                <p>Adventure</p>
+                            </article>
+                            <article>
+                                <span> <i class="fa fa-check"></i></span>
+                                <p>Animation</p>
+                            </article>
+                            <article class="tlong">
+                                <span> <i class="fa fa-check"></i></span>
+                                <p>Documentary</p>
+                            </article>
+                            <article>
+                                <span> <i class="fa fa-check"></i></span>
+                                <p>Fantasy</p>
+                            </article>
+                            <article>
+                                <span> <i class="fa fa-check"></i></span>
+                                <p>Musicals</p>
+                            </article>
+                            <article>
+                                <span> <i class="fa fa-check"></i></span>
+                                <p>Crimes</p>
+                            </article>
+                        </section>
+                    </div>
+                </div>
+
+                <div class="select_movies py-5 clear">
+                    <p> Select movies
+                        <span>This allows us to figure out a recomendation for you</span>
+                    </p>
+                    <section class="movie_container">
+
+                        <div class="movie_lists">
+                            <article class="move_list_item">
+                                <figure>
+                                    <img src="{% static 'uploads/img1.png' %}" alt="">
+                                </figure>
+                                <figcaption>
+                                    The Unicorn <span>(2019)</span>
+                                </figcaption>
+                            </article>
+                            <article class="move_list_item">
+                                <figure>
+                                    <img src="{% static 'uploads/img2.png' %}" alt="">
+                                </figure>
+                                <figcaption>
+                                    The Unicorn <span>(2019)</span>
+                                </figcaption>
+                            </article>
+                            <article class="move_list_item">
+                                <figure>
+                                    <img src="{% static 'uploads/img2.png' %}" alt="">
+                                </figure>
+                                <figcaption>
+                                    The Unicorn <span>(2019)</span>
+                                </figcaption>
+                            </article>
+                            <article class="move_list_item">
+                                <figure>
+                                    <img src="{% static 'uploads/img3.png' %}" alt="">
+                                </figure>
+                                <figcaption>
+                                    The Unicorn <span>(2019)</span>
+                                </figcaption>
+                            </article>
+                            <article class="move_list_item">
+                                <figure>
+                                    <img src="{% static 'uploads/img1.png' %}" alt="">
+                                </figure>
+                                <figcaption>
+                                    The Unicorn <span>(2019)</span>
+                                </figcaption>
+                            </article>
+                            <article class="move_list_item">
+                                <figure>
+                                    <img src="{% static 'uploads/img3.png' %}" alt="">
+                                </figure>
+                                <figcaption>
+                                    The Unicorn <span>(2019)</span>
+                                </figcaption>
+                            </article>
+                            <article class="move_list_item">
+                                <figure>
+                                    <img src="{% static 'uploads/img4.png' %}" alt="">
+                                </figure>
+                                <figcaption>
+                                    The Unicorn <span>(2019)</span>
+                                </figcaption>
+                            </article>
+                            <article class="move_list_item">
+                                <figure>
+                                    <img src="{% static 'uploads/img5.png' %}" alt="">
+                                </figure>
+                                <figcaption>
+                                    The Unicorn <span>(2019)</span>
+                                </figcaption>
+                            </article>
+                            <article class="move_list_item">
+                                <figure>
+                                    <img src="{% static 'uploads/img3.png' %}" alt="">
+                                </figure>
+                                <figcaption>
+                                    The Unicorn <span>(2019)</span>
+                                </figcaption>
+                            </article>
+                            <article class="move_list_item">
+                                <figure>
+                                    <img src="{% static 'uploads/img3.png' %}" alt="">
+                                </figure>
+                                <figcaption>
+                                    The Unicorn <span>(2019)</span>
+                                </figcaption>
+                            </article>
+                            <article class="move_list_item">
+                                <figure>
+                                    <img src="{% static 'uploads/img3.png' %}" alt="">
+                                </figure>
+                                <figcaption>
+                                    The Unicorn <span>(2019)</span>
+                                </figcaption>
+                            </article>
+                            <article class="move_list_item">
+                                <figure>
+                                    <img src="{% static 'uploads/img3.png' %}" alt="">
+                                </figure>
+                                <figcaption>
+                                    The Unicorn <span>(2019)</span>
+                                </figcaption>
+                            </article>
+
+                        </div>
+                    </section>
+                </div>
+                <p class="cta my-5"><a href="#" class='finish'>Finish</a><a href="#">Skip this step</a></p>
+
+            </section>
+        </div>
+    </main>
+
+    <!-- {% include 'partials/footer.html' %} -->
+
+{% endblock content %}
+
+{% block javascript %}
+
+    <script>
+
+    let genre = $(".genre article span");
+
+    for (i = 0; i < genre.length; i++) {
+        $(genre[i]).on("click", function () {
+            $(this).toggleClass("g_active");
+        });
+
+    }
+</script>
+{% endblock javascript %}

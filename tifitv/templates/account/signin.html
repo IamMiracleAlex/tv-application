@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+
+{% load socialaccount %}
+
+{% load static %}
+    
+    {% block title %} Sign in {% endblock title %}
+    
+    {% block extrastyle %}
+        <link rel="stylesheet" href="{% static 'css/signup.css' %}">
+    {% endblock extrastyle %}
+    
+{% block content %}
+
+    <div class="container">
+        
+        {% include 'partials/navbar.html' %}
+
+    </div>
+    <main>
+        <section class="page_header">
+            <span>
+                <h3>Instantly watch TV shows & Movies</h3>
+                <p>Welcome back!</p>
+            </span>
+        </section>
+        <div class="container-fluid">
+            <section class="section--two">
+                
+               <a href="{% provider_login_url "google" %}"> <section class="google"><i class="fab fa-google"></i>Continue with Google</section></a>
+                <a href="{% provider_login_url "facebook" method="oauth2"  %}"><section class="facebook"><i class="fab fa-facebook-f"></i>Continue with Facebook</section></a>
+
+                <p><span>or</span></p>
+
+                <a href="{% url 'account_login' %}">
+                    <section class="email"><i class="fas fa-envelope"></i>Continue with Email</section>
+                </a>
+                   
+
+                    <div class="notSignedIn">
+                    <article> Don't have an account? <a class="font-weight-bold" href="{% url 'signup' %}">Sign Up</a></article>
+
+                </div>
+                </section>
+        </div>
+    </main>
+
+    {% include 'partials/footer.html' %}
+
+{% endblock content %}

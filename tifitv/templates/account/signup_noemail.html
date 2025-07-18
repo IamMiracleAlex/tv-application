@@ -1,0 +1,56 @@
+{% extends 'base.html' %}
+
+{% load socialaccount %}
+
+{% load static %}
+
+{% block title %} Sign Up {% endblock title %}
+
+{% block extrastyle %}
+    <link rel="stylesheet" href="{% static 'css/signup.css' %}">
+{% endblock extrastyle %}
+
+{% block content %}
+
+<div class="container">
+
+       {% include 'partials/navbar.html' %}
+
+    </div>
+    <main class="">
+        <div class="container-fluid">
+            <section class="section--one">
+                <span>
+                    <h3>Sign Up</h3>
+                    <p>to save your preferences and get notifications</p>
+                </span>
+                <section class="steps row">
+                    <section class="active col-6">
+                        <p>STEP 1</p>
+                        <P>Create Account</P>
+                    </section>
+                    <section class="col-6">
+                        <p>STEP 2</p>
+                        <p>Welcome to tifi.tv</p>
+                    </section>
+                </section>
+            </section>
+
+            <section class="section--two">
+                <a href="{% provider_login_url "google" %}"><section class="google"><i class="fab fa-google"></i>Sign up with Google</section></a>
+                <a href="{% provider_login_url "facebook"  %}"><section class="facebook"><i class="fab fa-facebook-f"></i>Sign up with Facebook</section></a>
+
+                <p><span>or</span></p>
+
+                <a href="{% url 'account_signup' %}">
+                    <section class="email"><i class="fas fa-envelope"></i>Sign up with Email</section>
+                </a>
+                <div class="notSignedIn">Have an account? <a href="{% url 'signin' %}" class="font-weight-bold">Sign In</a>
+                </div>
+            </section>
+        </div>
+    </main>
+
+   {% include 'partials/footer.html' %}
+
+{% endblock content %}

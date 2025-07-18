@@ -1,0 +1,245 @@
+{% extends 'base.html' %}
+{% load numbers %}
+{% load static %}
+
+{% block title %} Welcome Back {% endblock title %}
+
+{% block extrastyle %}
+    <link rel="stylesheet" href="{% static 'css/home_auth.css' %}">
+{% endblock extrastyle %}
+    
+
+{% block content %}
+
+
+<div class="container" style="max-width: 1200px">
+
+    {% include 'partials/navbar.html' %}
+
+</div>
+    <main class="container">
+    <br>
+        <section class="row mx-0 mx-0">
+            <section class="col-lg-3 sidebar pl-0 pr-3 mx-0">
+                <i class="fa fa-arrow-left arrow"></i>
+                <h5 class="bg_color sidebar_header pl-5 ">
+                    Recommended For You
+                </h5>
+                <form action="" class="form1 pl-5">
+                    <div class="form-group">
+                        <p><input type="checkbox" name="tv_shows" id="tv_shows" value="TV Shows"> TV Shows</p>
+                        <p><input type="checkbox" name="movies" id="movies" value="Movies"> Movies</p>
+                    </div>
+                    <div class="form-group">
+                        <h6>Genres <i class="fa fa-angle-up"></i></h6>
+                        <p><input type="checkbox" name="comedy" value="Comedy" >Comedy</p>
+                        <p><input type="checkbox" name="action" value="Action" >Action</p>
+                        <p><input type="checkbox" name="epic"  value="Epic">Epic</p>
+                        <p><input type="checkbox" name="horror"  value="Horror">Horror</p>
+                        <p><input type="checkbox" name="thriller"  value="Thriller">Thriller</p>
+                        <p><input type="checkbox" name="violence"  value="Violence">Violence</p>
+                        <p><input type="checkbox" name="feature films"  value="Feature Films">Feature Films</p>
+                    </div>
+                    <div class="form-group">
+                        <h6>What is your mood today? <i class="fa fa-angle-up"></i></h6>
+                        <p><input type="checkbox" name="" value="Solemn" >Solemn</p>
+                        <p><input type="checkbox" name="" value="Mischievous" >Mischievous</p>
+                        <p><input type="checkbox" name=""  value="Romantic">Romantic</p>
+                        <p><input type="checkbox" name=""  value="Old">Old</p>
+                        <p><input type="checkbox" name=""  value="Margical">Violence</p>
+                        <p><input type="checkbox" name=""  value="Festive">Festive</p>
+                    </div>
+                </form>
+                <h5 class=" sidebar_header px-5">
+                    Explore
+                </h5>
+                <div class="form-group pl-5">
+                    <h6>Recently Added <i class="fa fa-angle-up"></i></h6>
+                    <p><input type="checkbox" name="" value="Netflix" >Netflix</p>
+                    <p><input type="checkbox" name="" value="Amazone Prime" >Amazone Prime</p>
+                    <p><input type="checkbox" name=""  value="Apple TV">Apple TV</p>
+                    <p><input type="checkbox" name=""  value="HBO">HBO</p>
+                    <p><input type="checkbox" name=""  value="ShowMax">ShowMax</p>
+                    <p><input type="checkbox" name=""  value="Disney TV">Disney TV</p>
+
+                    <h6>Hot on Twitter <img src="{% static 'uploads/left_pointer.png' %}" alt=""></h6>
+                    <h6>Top Downloaded <img src="{% static 'uploads/left_pointer.png' %}" alt=""></h6>
+                    <h6>Popular Lists <i class="fa fa-angle-up"></i></h6>
+
+                    <p><input type="checkbox" name="" value="" >Baddt</p>
+                    <p><input type="checkbox" name=""  value="">Sapio</p>
+                    <p><input type="checkbox" name=""  value="">All Crime</p>
+                    <p><input type="checkbox" name=""  value="">Bloddy Horrors</p>
+                    <p><input type="checkbox" name=""  value="">Erotic</p>
+                </div>
+                <h5 class=" sidebar_header">
+                    My Lists (Baddt)
+                    <span><a href="#" class="">Edit</a> </span>
+                </h5>
+                <section class="my_list mb-5 pl-5">
+
+                    <form action="" class="form2 px-0 mx-0">
+                        <div class="form-group">
+                            <h6>Make Public <i><input type="checkbox" name="" ></i></h6>
+                            <span class="m_public">
+                                <p>Suits<i class="fas fa-times"></i></p>
+                                <p>Breaking Bad<i class="fas fa-times"></i></p>
+                                <p>Grey's Anatomy<i class="fas fa-times"></i></p>
+                                <p>HBO<i class="fas fa-times"></i></p>
+                            </span>
+                        </div>
+
+                    </form>
+                </section>
+            </section>
+
+            <section class="col-lg-9 main_page pl-0 pl-lg-3 pr-0 mx-0">
+                <article class="pb-5 pb-lg-0">
+                    <h3 class="mb-4">Tv Show you should watch</h3>
+                    <article class="sort">Sorted by
+                        <span class="brand_color myDropdown"><span class="filter_value pl-2">Popularity </span> <i
+                                class="fa fa-angle-down"></i></span>
+                        <div class="dropdown_content">
+                            <li>Popularity
+                                <span class="check_state active_check"><img src="{% static 'uploads/check.png' %}" alt=""></span>
+                            </li>
+
+                            <li>Top Rated
+                                <span class=" check_state"><img src="{% static 'uploads/check.png' %}" alt=""></span>
+                            </li>
+                            <li>All-Time Great
+                                <span class=" check_state"><img src="{% static 'uploads/check.png' %}" alt=""></span>
+                            </li>
+                        </div>
+                    </article>
+                    <article class="range pt-4 my-4">
+                        <span class="week">1 week</span>
+                        <p>
+                            Time range
+                            <input type="range" class=""></p>
+                    </article>
+                </article>
+                <div class="movie_list mt-5 mx-0 px-md-0 d-flex flex-row flex-wrap justify-content-around justify-content-md-between">
+                    {% for movie in movies %}
+                    <article>
+                        <span>
+                            <div>
+                                <img src="{{movie.poster_url}}" alt=""></div>
+                                <div class="m_details">
+                                {% if  movie.num_imdb_ratings > 1000 %}
+                                <span class="">{{movie.num_imdb_ratings|number}}</span>
+                                {% else %}
+                                <span class="">{{movie.num_imdb_ratings}}</span>
+                                {% endif %}
+                                    <p><a href="{{movie.get_absolute_url}}"> {{movie.title}}</a><br>
+                            <!-- <i>{{movie.type}}</i> -->
+                                    </p>
+                            </div>
+                        </span>
+                <a href="{{movie.get_absolute_url}}"><section class="state_container">
+                    <section class="m_state">
+                        <p class="icons d-flex flex-row flex-wrap justify-content-between px-4">
+                            <i class="fa fa-heart state_icon"></i>
+                            <i class="fa fa-check state_icon"></i>
+                            <i class="fas fa-bookmark state_icon movie_tag"></i>
+                            <i class="fa fa-comment">
+                                <!-- <span>233</span> -->
+                            </i>
+                        </p>
+                    </section>
+                    <section class="seen seen1 changestate">
+                        <p class="">
+                            <i class="fa fa-check"></i>
+                            <a href="">Seen</a>
+                        </p>
+                    </section>
+
+                    <section class="watch watch1 changestate">
+                        <p class="about_movie mb-2">
+                          {{movie.plot}}
+                        <p class="ratings mb-4 mt-4">
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="far fa-star"></i>
+                            <span>{{movie.num_imdb_ratings}} Ratings</span>
+                        </p>
+
+
+
+                        <p class="watch_movie py-2">
+                            Watch
+                        </p>
+
+                    </section>
+
+                </section></a>
+            </article>
+             {% endfor %}
+            </div>
+          
+
+            <section class="pagination mb-5 mx-0">
+                <ul class="pagination mx-auto my-3">
+
+                    {% if movies.has_previous %}
+                        <li><a href="?page={{ movies.previous_page_number }}"><i class="fa fa-chevron-left" aria-hidden="true"></i></a></li>
+                    {% else %}
+                        <li class="disabled"><span><i class="fa fa-chevron-left" aria-hidden="true"></i></span></li>
+                    {% endif %}
+                      
+                    {% if movies.number|add:'-4' > 1 %}
+                        <li><a href="?page={{ movies.number|add:'-5' }}">&hellip;</a></li>
+                    {% endif %}
+                      
+                    {% for i in movies.paginator.page_range %}
+                        {% if movies.number == i %}
+                            <li class="active"><span>{{ i }} <span class="sr-only">(current)</span></span></li>
+                        {% elif i > movies.number|add:'-5' and i < movies.number|add:'5' %}
+                            <li><a href="?page={{ i }}">{{ i }}</a></li>
+                        {% endif %}
+                    {% endfor %}
+                      
+                    {% if movies.paginator.num_pages > movies.number|add:'4' %}
+                        <li><a href="?page={{ movies.number|add:'5' }}">&hellip;</a></li>
+                    {% endif %}
+                      
+                    {% if movies.has_next %}
+                        <li><a href="?page={{ movies.next_page_number }}"><i class="fa fa-chevron-right" aria-hidden="true"></i></a></li>
+                    {% else %}
+                        <li class="disabled"><span><i class="fa fa-chevron-right" aria-hidden="true"></i></span></li>
+                    {% endif %}
+                      
+              
+                </ul>
+          </section>
+        </div>
+      
+
+            <style media="screen">
+              .paginate {
+                height: 100%;
+                width: 10%;
+                background-color: #FF5300;
+                border: 1px solid #FF5300;
+                color: #ffffff;
+                border-radius: 0 8px 8px 0;
+              }
+              .pagi {
+                text-align: center;
+              }
+            </style>
+        </section>
+
+    </section>
+
+</main>
+    {% include 'partials/footer.html' %}
+
+
+{% endblock content %}
+
+{% block javascript %}
+    <script src="{% static 'js/main.js' %}"></script>
+    {% endblock javascript %}

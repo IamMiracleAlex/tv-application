@@ -1,0 +1,165 @@
+{% extends "base.html" %} {% load static %}
+
+{% block title %} Welcome {% endblock %}
+
+{% load custom_tags %}
+
+{% block content %}
+
+{% include 'partials/navbar.html' %}
+
+<!-- Page body -->
+<section class="row content-wrap">
+    <div class="container">
+
+    {% include 'partials/alerts.html' %}
+    
+            <div class="col-lg-8">
+
+        {% if tag %}
+
+            <h2>Posts tagged with "{{ tag.name }}"</h2>
+
+        {% endif %}
+
+        <div class="row" id="post-masonry">
+
+        {% for post in posts %}
+            
+            <!--Blog Post-->
+            <article class="col-lg-6 post post-masonry post-format-image">
+                <div class="post-wrapper row">
+
+                  <!--Post image-->
+                  {% if post.image %}
+                    <div class="featured-content row">
+                        <a href="{{ post.get_absolute_url }}"><img src="{{ post.image.url }}" alt="" class="img-responsive">
+                        </a>
+                    </div>
+                    {% endif %}
+                    <div class="post-excerpt row">
+
+                      <!--Author and date-->
+                        <h5 class="post-meta">
+                            <a href="#" class="date">{{ post.publish }}</a>
+                            <span class="post-author"><i>by</i><a href="#">{{ post.author }}</a>
+                            </span>
+                        </h5>
+
+                        <!--Post title and content-->
+                        <h3 class="post-title"> 
+                        <a href="{{ post.get_absolute_url }}"> {{ post.title }} </a>
+                        </h3>
+                        <p> 
+                        {{ post.body|safe|truncatewords_html:20 }}
+                         </p>
+
+                        <!--Tags-->
+                        <footer class="row">
+                            <h5 class="taxonomy"> <i>in</i>
+
+                            {% for tag in post.tags.all %}
+                                <a href="{% url "blog:posts_by_tag" tag.slug %}">
+                                {{ tag.name }}</a>{% if not forloop.last %},
+                                
+                                {% endif %}
+                            {% endfor %}
+                            </h5>
+
+                            <!--Comment icon and count-->
+                            <div class="response-count">
+                            <img src="{% static 'images/comment-icon-gray.png' %}" alt="">
+                            </div>
+                        </footer>
+                    </div>
+                </div>
+            </article>
+
+        {% empty %}
+
+            <h2>No posts yet</h2>
+
+
+        {% endfor %}
+           
+        </div>
+    </div>
+
+
+
+
+    <!-- Side bar -->
+<div class="col-lg-4">
+    <div class="row" id="post-masonry">
+
+        <aside class="col-lg-12 widget-author widget widget-with-posts post">
+                <div class="widget-author-inner row">
+                    <div class="author-avatar row">
+                        {% comment %} <a href="#">
+                        </a> {% endcomment %}
+                        <img width='100%' height='auto' src="{% static 'images/author4.jpg' %}" alt="" class="img-circle">
+                    </div>
+                    <a href="#"><h2 class="author-name">Miracle Alex</h2></a>
+                    <h5 class="author-title">Software Developer</h5>
+                    <p>I'm a mission-driven software developer with experience in
+                        enterprise and high-performance web technologies. A
+                        fullstack developer but favours backend development.</p>
+                    <a href="https://github.com/mirakul1" class="know-more">know more</a>
+                </div>
+                <ul class="nav social-nav">
+                    <li><a href="https://twitter.com/iammiraclealex"><i class="fa fa-twitter"></i></a></li>
+                    <li><a href="https://linkedin.com/in/mirakul1"><i class="fa fa-linkedin"></i></a></li>
+                    <li><a href="https://github.com/mirakul1"><i class="fa fa-github"></i></a></li>
+                    <li><a href="https://instagram.com/mirakul_1"><i class="fa fa-instagram"></i></a></li>
+                    <li><a href="mailto: collinsalex50@gmail.com"><i class="fa fa-envelope"></i></a></li>
+                </ul>
+            </aside>
+
+        </div>   
+
+            <!--Latest Posts-->
+                <aside class="row m0 widget-author widget">
+                    <div class="widget-author-inner row">
+                        <h2 class="author-name">Latest Posts</h2>
+
+                        {% show_latest_posts 4 %}
+                        
+                    </div>
+                </aside>
+
+                    <!--Most commented Posts-->
+                <aside class="row m0 widget-author widget">
+                    <div class="widget-author-inner row">
+                        <h3 class="author-name">Most Commented</h3>
+
+                        {% get_most_commented_posts as most_commented_posts %}
+
+                        <ul>
+                            {% for post in most_commented_posts %}
+                        <li>
+                        <a href="{{ post.get_absolute_url }}">{{ post.title }}</a>
+                        </li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                </aside>
+
+
+    </div>
+
+    </div>
+    
+</section>
+
+{% include "partials/paginator.html" with page=posts %}
+ 
+
+
+
+
+
+
+
+{% include 'partials/footer.html' %}
+
+{% endblock content %}

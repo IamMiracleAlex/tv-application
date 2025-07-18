@@ -1,0 +1,374 @@
+* {
+  margin: 0;
+  padding: 0;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  font-style: normal;
+  font-family: 'Open Sans', sans-serif;
+}
+
+.container {
+  max-width: 1200px;
+  min-width: 320px;
+  padding: 0 1%;
+}
+
+.row {
+  margin: 0;
+}
+
+a {
+  text-decoration: none;
+  color: #000000;
+}
+
+a:hover {
+  text-decoration: none;
+  color: #FF5300;
+}
+
+.brand_color {
+  color: #FF5300;
+}
+
+.bg_color {
+  background-color: #FF5300;
+  color: #ffffff;
+  border: 0;
+  border-radius: 5px;
+}
+
+img {
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+
+.clear {
+  clear: both;
+}
+
+.active {
+  color: #FF5300;
+}
+
+
+header .header_search div span {
+  display: none !important;
+  margin-left: -70px;
+}
+
+/*Page style start*/
+.page_header {
+  position: relative;
+  height: 320px;
+  background-image: url("../uploads/got_throne.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.page_header_content {
+  width: 300px;
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  height: 200px;
+}
+
+.page_header_content .vote_number {
+  color: #ffffff;
+}
+
+.page_header_content .vote_number p {
+  font-size: 22px;
+  line-height: 30px;
+}
+
+.page_header_content .vote_number span {
+  font-weight: lighter;
+  font-size: 14px;
+}
+
+.page_header_content .vote_star {
+  color: #ffce31;
+  font-size: 25px;
+  font-weight: lighter;
+  font-weight: 600;
+}
+
+.page_header_content .vote_star i:last-child {
+  color: white;
+}
+
+.page_header_content .m_provider {
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 16px;
+  color: #ffffff;
+}
+
+.page_header_content .m_provider article {
+  width: 50px;
+  height: 50px;
+}
+
+.page_header_content .m_provider img {
+  width: 100%;
+  height: 25px;
+  border-radius: 2px;
+}
+
+.page_header_content .m_provider span {
+  display: block;
+}
+
+.page_body .sidebar .img_container {
+  background-color: #332f30;
+}
+
+.page_body .sidebar .img_container img {
+  width: 100%;
+  height: auto;
+}
+
+.page_body .sidebar .movie_details p {
+  font-weight: bold;
+  font-size: 14px;
+  line-height: 19px;
+  margin-bottom: 5px;
+}
+
+.page_body .sidebar .movie_details p span:last-child {
+  font-size: 11px;
+}
+
+.page_body .sidebar .movie_trailer p {
+  background-color: rgba(119, 119, 119, 0.08);
+  border-radius: 5px;
+  width: 117px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -ms-flex-line-pack: center;
+      align-content: center;
+  font-weight: 600;
+  font-size: 18px;
+  line-height: 25px;
+}
+
+.page_body .sidebar .movie_trailer iframe {
+  width: 100%;
+  height: auto;
+}
+
+.page_body .sidebar .movie_trailer article {
+  width: 100%;
+}
+
+.page_body .sidebar .movie_trailer article iframe,
+.page_body .sidebar .movie_trailer article img {
+  width: 49%;
+  height: auto;
+}
+
+.page_body .sidebar .movie_cc h3 {
+  font-weight: 600;
+  font-size: 18px;
+  line-height: 25px;
+  color: #332f30;
+}
+
+.page_body .sidebar .movie_cc div article {
+  width: 45%;
+}
+
+.page_body .sidebar .movie_cc div article p {
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 19px;
+}
+
+.page_body .sidebar .movie_cc div article p:first-child {
+  color: #FF5300;
+}
+
+.page_body .main_container {
+  position: relative;
+}
+
+.page_body .main_container h3 {
+  font-weight: 600;
+  font-size: 28px;
+  line-height: 38px;
+  color: #000000;
+}
+
+.page_body .main_container h3 span {
+  color: #777777;
+}
+
+.page_body .main_container p.add_to {
+  position: absolute;
+  right: 20px;
+  top: 20px;
+  font-size: 14px;
+  line-height: 18px;
+}
+
+.page_body .main_container section.about_movie {
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 19px;
+  color: #332f30;
+}
+
+.page_body .main_container section.about_movie h5 {
+  font-weight: 600;
+  font-size: 18px;
+  line-height: 25px;
+}
+
+.page_body .main_container section.about_movie p:last-child a {
+  border: 1px solid;
+  border-radius: 10px;
+  display: inline-block;
+  margin-bottom: 10px;
+}
+
+.page_body .main_container section.about_movie p:last-child a.active {
+  color: #FF5300;
+}
+
+.page_body .main_container section.seasons {
+  font-weight: 600;
+}
+
+.page_body .main_container section.seasons h3 {
+  font-size: 18px;
+  line-height: 25px;
+  color: #332f30;
+}
+
+.page_body .main_container section.seasons ul.list-unstyled {
+  width: 80%;
+  background-color: #dfd7d7;
+}
+
+.page_body .main_container section.seasons ul.list-unstyled li {
+  border: 1px solid #b6adad;
+  border-right: none;
+  border-left: none;
+}
+
+.page_body .main_container section.seasons ul.list-unstyled i {
+  float: right;
+}
+
+.page_body .main_container .episode_thriller_item {
+  width: 100%;
+  height: auto;
+}
+
+.page_body .main_container .episode_thriller_item iframe {
+  width: 100%;
+  height: auto;
+}
+
+.page_body .main_container .episode_thriller_item span a {
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 20px;
+}
+
+.page_body .main_container .episode_thriller_item p {
+  font-weight: bold;
+  font-size: 24px;
+  line-height: 20px;
+}
+
+.page_body .main_container .episode_thriller_item p a {
+  font-weight: normal;
+}
+
+.page_body .main_container .episode_thriller_item a.trailer_text {
+  font-size: 14px;
+  line-height: 20px;
+}
+
+.page_body .main_container .comment_container h3 {
+  font-weight: 600;
+  font-size: 18px;
+  line-height: 25px;
+}
+
+.page_body .main_container .comment_container .comment {
+  border: 1px solid #dadada;
+  border-radius: 8px;
+  position: relative;
+}
+
+.page_body .main_container .comment_container .comment .fa-twitter {
+  position: absolute;
+  right: 40px;
+  top: 40px;
+  color: #00aeff;
+  font-size: 30px;
+}
+
+.page_body .main_container .comment_container .comment article.t_user i {
+  font-size: 70px;
+  color: #979797;
+}
+
+.page_body .main_container .comment_container .comment .tweet a {
+  color: #FF5300;
+}
+
+.page_body .main_container .comment_container .comment .tweet p {
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 20px;
+}
+
+.page_body .main_container .comment_container .comment .tweet article {
+  font-weight: normal;
+  font-size: 16px;
+  line-height: 20px;
+}
+
+.page_body .main_container .comment_container .comment .rt_likes i {
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 20px;
+  color: #979797;
+}
+
+.page_body .main_container .comment_container .gists {
+  border-top: 1px solid grey;
+}
+
+.page_body .main_container .comment_container .gists div {
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 20px;
+  color: #1b8bc8;
+}
+
+.page_body .main_container .comment_container .see_more {
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 20px;
+  letter-spacing: 0.233333px;
+  color: #1b8bc8;
+}
+
+@media screen and (min-width: 768px) {
+  /*header style*/
+  header .header_search div span {
+    display: block !important;
+    visibility: hidden;
+  }
+}
+/*# sourceMappingURL=search_result.css.map */

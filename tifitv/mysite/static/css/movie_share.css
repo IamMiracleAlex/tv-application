@@ -1,0 +1,116 @@
+* {
+  margin: 0;
+  padding: 0;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  font-style: normal;
+  font-family: 'Open Sans', sans-serif;
+}
+
+body {
+  overflow-x: hidden !important;
+}
+
+.container {
+  max-width: 1200px;
+  min-width: 350px;
+  padding: 0 2.5%;
+}
+
+a {
+  text-decoration: none;
+  color: #000000;
+}
+
+a:hover {
+  text-decoration: none;
+  color: #FF5300;
+  opacity: .7;
+}
+
+.brand_color {
+  color: #FF5300;
+}
+
+.bg_color {
+  background-color: #FF5300;
+  color: #ffffff;
+  border: 0;
+  border-radius: 5px;
+}
+
+img {
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+
+.clear {
+  clear: both;
+}
+
+.active {
+  color: #FF5300;
+}
+
+.modal_header {
+  background-color: #ffffff;
+}
+
+.modal_header .modal_content div.body1 {
+  border: 0.5px solid #cacacaca;
+  border-right: none;
+  border-left: none;
+}
+
+.modal_header .modal_content div.body1 p {
+  font-size: 14px;
+  line-height: 19px;
+  color: #000000;
+}
+
+.modal_header .modal_content div.body1_header h4.movie_name {
+  font-weight: bold;
+  font-size: 24px;
+  line-height: 33px;
+  color: #000000;
+}
+
+.modal_header .modal_content div.body1_header h4.movie_name article {
+  font-weight: bold;
+  font-size: 18px;
+  line-height: 25px;
+}
+
+.modal_header .modal_content div.body2 input[type="text"] {
+  width: 100%;
+  height: 32px;
+  background: #ffffff;
+  border: 1px solid #a8b7c7;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  border-radius: 4px;
+}
+
+.modal_header .modal_content div.body2 .review_input {
+  height: 187px !important;
+}
+
+.modal_header .modal_content div.cta input:last-child {
+  border: 1px solid #FF5300;
+  background-color: transparent;
+  border-radius: 5px;
+}
+
+@media screen and (min-width: 768px) {
+  .modal_image {
+    -webkit-box-ordinal-group: 3;
+        -ms-flex-order: 2;
+            order: 2;
+  }
+  .modal_content {
+    -webkit-box-ordinal-group: 2;
+        -ms-flex-order: 1;
+            order: 1;
+  }
+}
+/*# sourceMappingURL=movie_share.css.map */

@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+
+{% block title %} Done Pages {% endblock title %}
+
+{% block content %}
+    
+    <style>
+        main {
+            width: 90%;    
+        }
+           main ol {
+           text-align: left;
+        }
+         main  a {
+            color: black;
+            font-size: 20px;
+        }
+         main  a:hover {
+            opacity: .8;
+            color: #FF5300;
+        }
+        a:active {
+            color: red;
+        }
+    </style>
+
+
+        <main class=" container mx-auto px-5">
+
+          {% include 'partials/navbar.html' %}
+
+      <h3 class="px-5">FOR THE <span class="brand_color">PURPOSE</span> OF TESTING</h3>
+            <ol class="px-5">
+                <li><a href="{% url 'index' %}">Index page (Not authenticated) ++</a></li>
+                <li><a href="{% url 'signin' %}">signin page +++</a></li>
+                <li><a href="{% url 'account_login' %}">signinWithEmail Page +++</a></li>
+                <li><a href="{% url 'signup' %}">Signup page +++</a></li>
+                <li><a href="{% url 'account_signup' %}">signupWithEmail Page +++</a></li>
+                <li><a href="{% url 'profile' %}">User profile page +++</a></li>
+                <li><a href="{% url 'settings' %}">Settings +++</a></li>
+                
+                <li><a href="{% url 'home_auth' %}">Home - authenticated +++</a></li>
+                <li><a href="{% url 'single_series' %}">Series page +++</a></li>
+                <li><a href="3">Movies page +++</a></li>
+                <li><a href="{% url 'search' %}">Search page +++</a></li>
+
+            </ol>
+        </main>
+       
+{% include 'partials/footer.html' %}    
+
+{% endblock content %}

@@ -1,0 +1,334 @@
+{% extends 'base.html' %}
+{% load numbers %}
+{% load static %}
+{% load split_string %}
+
+{% block title %} {{movie.title}} {% endblock title %}
+{% block extrastyle %}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/single_series.css' %}">
+    <style>
+        .page_header {
+            background-image: url({% if movie.id == 709363 %}"{{movie.cover_image}}"{% else %}""{% endif %});
+        }
+    </style>
+{% endblock extrastyle %}
+    
+
+    {% block content %}
+ 
+
+    <div class="container">
+        
+        {% include 'partials/navbar.html' %}
+        
+    </div>
+    <ol class = 'breadcrumb'>
+        {%if not request.user.is_authenticated %}
+        <li><a href='{% url "index" %}'>Home/ </a></li>
+        {% else %}
+        <li><a href='{% url "home_auth" %}'>Home/ </a></li>
+        {% endif %}
+        <li><a href='{% url "explore" %}'>Explore/ </a></li>
+        <li><a href='{% url "genre" movie.genres|split:","|lower %}'>{{movie.genres|split:","}}/</a></li>
+    </ol>
+    <main>
+        <section class="page_header border border-dark">
+            <section class="container">
+                <article class="page_header_content">
+                    <div class="vote_number">
+                         <!-- <p class="font-weight-bold mb-n1">3/5</p>-->
+                         {% if  movie.num_imdb_ratings > 1000 %}
+                         <span class="">{{movie.num_imdb_ratings|number}} votes</span>
+                         {% else %}
+                         <span class="">{{movie.num_imdb_ratings}}votes</span>
+                         {% endif %}
+                    </div>
+                    <div class="vote_star my-3">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="far fa-star"></i>
+                        <i class="far fa-star"></i>
+                    </div>
+                    <div class="m_provider d-flex flex-row text-center mb-n4">
+                        <article class="mr-2"><img src="{% static 'uploads/prov1.png' %}" alt=""><span>{{movie.avg_rating}}/10</span></article>
+                        <!--<article class="mr-2"><img src="{% static 'uploads/prov3.png' %}" alt=""><span>8.5/10</span></article>
+                        <article class="mr-2"><img src="{% static 'uploads/prov3.png' %}" alt=""><span>7/10</span></article>
+                        <article class="mr-2"><img src="{% static 'uploads/prov4.png' %}" alt=""><span>9.8/10</span></article> -->
+                    </div>
+                </article>
+            </section>
+        </section>
+
+        <section class="page_body container pl-2">
+            <section class="row mx-auto my-2">
+                <div class=" sidebar col-md-4 pl-4  ">
+                    <section class="img_container">
+                        <img src="{{movie.poster_url}}" alt="" class="">
+                        <figcaption class="m_provider_logo row mx-auto">
+                            <img src="{% static 'uploads/netflix.png' %}" alt="" class=" col-6 img-fluid">
+                            <img src="{% static 'uploads/netflix.png' %}" alt="" class=" col-6 img-fluid">
+                        </figcaption>
+                    </section>
+                    <section class="movie_details my-5 py-3">
+
+                        <p><span>STATUS: </span> Ended</p>
+                        <p><span>RUNTIME: </span>{{movie.runtime_minutes|floatformat:"0"}}</p>
+                        <p><span>COUNTRY: </span>{{movie.country}}</p>
+                        <p><span>GENRES: </span>{{movie.genres}}</p>
+                        <p><span>TOTAL RUNTIME: </span>{{movie.runtime_minutes|floatformat:"0"}}m</p>
+                        <p><span>LANGUAGE: </span>{{movie.language}}</p>
+                        <p><span>NETWORK: </span>{{movie.production}}</p>
+                        <p><span>PREMIERED: </span>{{movie.release_date}}</p>
+
+
+                        {% if movie.netflix_id %}
+                        <p><span>AVAILABLE ON NETFLIX: </span>YES</p>
+                        {% endif %}
+                    </section>
+                    <section class="movie_trailer">
+                        <p class="p-2">TRAILER</p>
+                        <article class="d-flex flex-row flex-wrap justify-content-between mt-5">
+                           
+                              {% if movie.id == 709363 %}
+                             <iframe src="{{movie.main_trailer}}" frameborder="0"
+                                class="mb-1"></iframe>
+                            <iframe src="{{movie.main_trailer}}" frameborder="0"
+                                class="mb-1"></iframe>
+                            <iframe src="{{movie.main_trailer}}" frameborder="0"
+                                class="mb-1"></iframe>
+                            <iframe src="{{movie.main_trailer}}" frameborder="0"
+                                class="mb-1"></iframe>
+                            </iframe>
+                            {% else %}
+                            {{movie.main_trailer}}
+                            {% endif %}
+                        </article>
+                    </section>
+                    <section class="movie_trailer mt-5">
+                        <p class="p-2">PHOTO</p>
+                        <article class="d-flex flex-row flex-wrap justify-content-between mt-5">
+                            <img src="{{movie.poster_url}}" alt="" class="mb-2">
+                            <img src="{{movie.poster_url}}" alt="" class="mb-2">
+                            <img src="{{movie.poster_url}}" alt="" class="mb-2">
+                            <img src="{{movie.poster_url}}" alt="" class="mb-2">
+                        </article>
+                    </section>
+                    <section class="movie_cc my-5">
+                        <h4>CAST & CREW</h4>
+                        <div class="d-flex flex-row flex-wrap justify-content-between">
+                           
+                           
+                            <p class="brand_color mt-3" >Director</p>
+                    
+                        </div>
+                        <div class="">
+                            <p>{{movie.director}}</p>
+                            <!--<a href="#" class="font-weight-bold">See 3 more <i class="fas fa-angle-down"></i></a>-->
+                        </div>
+                    </section>
+                </div>
+
+                <div class="main_container col-md-8 pt-5">
+                    <h1> {{movie.title}} <span>({{movie.release_date|date:"Y"}})</span></h1>
+    
+                    {% for watch in watches %}
+                        {% if watch.status %}
+                           <button id="add_to" name="add_watchlist" type="submit" class="bg_color add_to px-3 py-2"> 
+                        <i class="fa fa-check"></i> IN WATCHLIST
+                    </button>
+                        {% else %}
+                           <button id="add_to" name="add_watchlist" type="submit" class="bg_color add_to px-3 py-2"> 
+                        <i class="fa fa-plus"></i> ADD TO WATCHLIST
+                    </button>
+                        {% endif %}
+                    
+                    {% empty %}
+                      <button id="add_to" name="add_watchlist" type="submit" class="bg_color add_to px-3 py-2"> 
+                    <i class="fa fa-plus"></i> ADD TO WATCHLIST
+                    </button>
+                    {% endfor %}
+                  
+                  
+                    <section class="about_movie my-5">
+                        <h5>SYNOPSIS</h5>
+                        <p>
+                            {{movie.plot}}
+                        </p>
+                        <p class="mb-0 mt-5">
+                            <a href="#" id="mark-seen" class="active py-2 px-4 ml-0 mr-3" onclick="clickAndDisable(this);"> <i class="fa fa-check"> </i> &nbsp; MARK AS
+                                SEEN</a>
+                            <a href="#" class=" py-2 px-4  ml-0 mr-3"> <i class="far fa-comment"> </i> &nbsp; ADD COMMENT</a>
+
+                            <a class=" py-2 px-4 ml-0" data-container="body" data-toggle="popover" data-placement="bottom" title='Share Movie' data-content='<div> <a href="https://twitter.com/intent/tweet?text=Click to review {{movie.title}} at https://tifi.tv{{ request.get_full_path|urlencode }}" target="_blank" class=" py-2 px-4 ml-0"> <i class="fab fa-twitter"> </i> Tweet</a> 
+                            <br> <br> 
+                            <a href="https://www.facebook.com/sharer/sharer.php?u=https://tifi.tv{{ request.get_full_path|urlencode }}" target="_blank" class="py-2 px-4 ml-0"><i class="fab fa-facebook"></i> Facebook </a> 
+                            <br> <br> 
+                            <a href="mailto:?subject={{movie.title}}&body=Click to review {{movie.title}} at https://tifi.tv{{ request.get_full_path|urlencode }}" target="_blank" class=" py-2 px-4 ml-0"><i class="far fa-envelope"></i> Email </a> </div>' >
+                        <i class="fas fa-share-alt"> </i>  SHARE
+                            </a>                
+                        </p>
+                    </section>
+                    <section class="comment_container">
+                        <h4>COMMENTS</h4>
+                        <div>
+                            <section class="comment row py-5 px-0">
+                                <i class="fab fa-twitter"> </i>
+                                <article class="t_user col-2 d-flex justify-content-center"><img src="" alt=""> <i
+                                        class="fas fa-user-circle"></i></article>
+
+                                <article class="col-10 tweet">
+                                        <p> <i class="brand_color">Mark Essien</i> <a href=""> @markessien </a></p>                                    <article>
+                                        Game of Thrones is exactly like the title says: A game for the throne. Played by
+                                        the
+                                        people who think its their right to claim, conquer or inherit it. They all have
+                                        different goals and different ways of getting to that point
+                                        <a class="brand_color">#GOT8 </a>
+                                    </article>
+                                    <article class="rt_likes my-3">
+                                        <img src="{% static 'uploads/retweet.png' %}" alt=""> </i> 100k &nbsp;
+                                        <img src="{% static 'uploads/likes.png' %}" alt=""> </i>&nbsp;10k
+                                    </article>
+                                </article>
+
+                            </section>
+                            <div class="gists mt-n5  pt-3 mx-n3 ">
+                                <img src="{% static 'uploads/comments.png' %}" alt=""> &nbsp; 120 People are talking about this
+                            </div>
+                        </div>
+                        <div class="pt-5">
+                            <section class="comment row py-5 px-0">
+                                <i class="fab fa-twitter"> </i>
+                                <article class="t_user col-2 d-flex justify-content-center"><img src="" alt=""> <i
+                                        class="fas fa-user-circle"></i></article>
+
+                                <article class="col-10 tweet">
+                                        <p> <i class="brand_color">Mark Essien</i> <a href=""> @markessien </a></p>                                    <article>
+                                        Game of Thrones is exactly like the title says: A game for the throne. Played by
+                                        the
+                                        people who think its their right to claim, conquer or inherit it. They all have
+                                        different goals and different ways of getting to that point
+                                        <a class="brand_color">#GOT8 </a>
+                                    </article>
+                                    <article class="rt_likes my-3">
+                                        <img src="{% static 'uploads/retweet.png' %}" alt=""> </i> 100k &nbsp;
+                                        <img src="{% static 'uploads/likes.png' %}" alt=""> </i>&nbsp;10k
+                                    </article>
+                                </article>
+
+                            </section>
+                            <div class="gists mt-n5 pt-3 mx-n3">
+                                <img src="{% static 'uploads/comments.png' %}" alt=""> &nbsp; 120 People are talking about this
+                            </div>
+                            <p class="pt-3 see_more">See more</p>
+                        </div>
+                    </section>
+                    
+                    {% include 'partials/tweets.html' %}
+
+                </div>
+            </section>
+        </section>
+
+
+    </main>
+
+    {% include 'partials/footer.html' %}
+
+   {% endblock content %}
+
+   {% block javascript %}
+
+        <script>
+        $(function () {
+        $('[data-toggle="popover"]').popover({
+            html: true,
+        })
+        })
+        </script>
+
+      <script>
+
+    var $add_to = $('#add_to');
+
+      $("#add_to").click(function () {
+     
+       $.ajax({
+        url: '{% url 'add_watchlist' %}',
+        data: {
+          'movie_id' : {{ movie.pk }}
+        },
+        dataType: 'json',
+        beforeSend: function () {
+            $add_to.text('Loading...' );
+        },
+        success: function (data) {
+          if (data.final_status) {
+            $("#add_to").text('');
+            $("#add_to").append("<i class='fa fa-check'></i>"+ " IN WATCHLIST");
+          }else{
+            $("#add_to").text('');
+          $("#add_to").append("<i class='fa fa-plus'></i>"+ " ADD TO WATCHLIST")
+          }
+          if (data.auth) {
+             alert(data.auth)
+          }
+        }
+      });
+
+      });     
+      
+      </script>
+
+    <script>
+        let toggleModal = () => {
+            $(".tweet_box").toggle();
+            console.log()
+        }
+    </script>
+
+    <script>
+    {% comment %} $("button.add_to").click(function() {
+            const id = $("button.add_to").val();
+            //
+            // id = id.val();
+             // console.log(id);
+            var send = $.ajax({
+          url: "/watch/"+id,
+          type: "Get",
+          beforeSend: function() {
+            $("button.add_to").html('Adding');
+          },
+          error: function (request, error) {
+            if (JSON.parse(request.responseText).message === 'Unauthenticated.') {
+              console.log(JSON.parse(request.responseText).message);
+              $("button.add_to").html('<a href="/signin">SIGNIN TO CONTINUE</a>');
+            }
+        // alert(" Can't do because: " + error);
+    },
+    success: function () {
+        $("#added").html('<button class="bg_color add_to px-3 py-2"><i class="fa fa-check"></i> ADDED TO YOUR WATCHLIST</button>');
+    }
+        });
+        // console.log(send.response);
+        // send.error(function() {
+        //
+        //     });
+    });
+    </script>
+    <script> 
+    $('#mark-seen').click(function(e) {
+        $.ajax({
+        url: '{% url 'add_watchlist' %}',
+        data: {'movie_id' : {{ movie.pk }}
+        },
+        console.log(id);
+        e.preventDefault();
+        //do other stuff when a click happens
+        sessionStorage['seen'] = id
+        console.log(sessionStorage)
+        });   
+     </script> {% endcomment %}
+
+   {% endblock javascript %}
+

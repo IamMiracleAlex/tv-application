@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+
+{% block title %} {{ quote.title }} {% endblock title %}
+
+{% load static %}   
+
+
+
+
+
+{% block content %}
+
+
+  <div id="intro" class="container">
+        <div class="row">
+            <div class="col-lg-8 mx-auto">
+
+                <h3 class="text-center mt-5 text-primary">{{ quote.title }}</h3>
+                <h5 class="text-center mt-5"> {{ quote.body|safe }} </h5>
+                <h5 class="text-center  text-info">Keep pushing bro!!!! </h5>
+                <br> <br>
+                <h5 class="text-center text-muted"> {{ quote.views}} Views </h5> 
+
+            </div>
+
+        </div>
+
+</div>
+
+
+
+{% endblock content %}
+
