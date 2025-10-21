@@ -1,9 +1,0 @@
-env/
-.vscode
-*.pyc
-.DS_Store
-media/
-eded
-.idea/
-db.sqlite3
-.env
