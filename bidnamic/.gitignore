@@ -1,7 +1,0 @@
-env/
-__pycache__
-.vscode
-.DS_Store
-.coverage
-htmlcov/
-.env
