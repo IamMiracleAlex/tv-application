@@ -1,8 +1,0 @@
-migrations
-__pycache__/
-.pyc
-env
-db.sqlite3
-media
-.vscode
-.DS_Store
